@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://j87n4lychbt5"]
+
+[ext_resource type="Script" uid="uid://bdu71hmht8qs2" path="res://main_menu/version_label.gd" id="1_5huni"]
+[ext_resource type="Texture2D" uid="uid://d8anqt80rj3d" path="res://assets/UI/title_screen.png" id="1_6tl50"]
+[ext_resource type="PackedScene" uid="uid://bdnyglk1i1cxl" path="res://gameplay/gameplay.tscn" id="2_5nvqq"]
+[ext_resource type="Script" uid="uid://dg2kc4v1sx32s" path="res://main_menu/menu_options.gd" id="2_gpv3d"]
+[ext_resource type="PackedScene" uid="uid://dpicmplffpula" path="res://settings/settings.tscn" id="3_2osu0"]
+[ext_resource type="PackedScene" uid="uid://cee5dna3u27jf" path="res://assets/select_sfx.tscn" id="4_82nwe"]
+[ext_resource type="PackedScene" uid="uid://dpqn81oeuhsam" path="res://level_select/level_select.tscn" id="5_4m7wk"]
+[ext_resource type="StyleBox" uid="uid://dajsjcw6cvf1h" path="res://main_menu/ui_button_style.tres" id="7_6at21"]
+[ext_resource type="Theme" uid="uid://dkv4djn2a01bm" path="res://main_menu/ui_button_theme.tres" id="8_og6xe"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_6tl50")
+
+[node name="Credit" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_top = 679.0
+offset_right = -136.0
+offset_bottom = 705.0
+grow_horizontal = 2
+text = "A game by Jeremy Smith"
+
+[node name="Controls" type="Label" parent="."]
+layout_mode = 0
+offset_left = 837.0
+offset_top = 583.0
+offset_right = 1245.0
+offset_bottom = 687.0
+text = "Controls:"
+horizontal_alignment = 2
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 20.0
+offset_right = 1258.0
+offset_bottom = 46.0
+text = "Version: [set dynamically]"
+horizontal_alignment = 2
+script = ExtResource("1_5huni")
+
+[node name="DebugUIStatus" type="Label" parent="." groups=["debug_ui"]]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 23.0
+offset_right = 162.0
+offset_bottom = 49.0
+text = "Debug UI enabled"
+
+[node name="MenuOptions" type="VFlowContainer" parent="." node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut_context = NodePath("Start")
+alignment = 1
+script = ExtResource("2_gpv3d")
+gameplay_scene = ExtResource("2_5nvqq")
+settings_scene = ExtResource("3_2osu0")
+level_select_scene = ExtResource("5_4m7wk")
+
+[node name="Start" type="Button" parent="MenuOptions"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("7_6at21")
+text = "Start"
+
+[node name="Settings" type="Button" parent="MenuOptions"]
+layout_mode = 2
+theme = ExtResource("8_og6xe")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("7_6at21")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MenuOptions"]
+layout_mode = 2
+theme = ExtResource("8_og6xe")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("7_6at21")
+text = "Quit"
+
+[node name="SelectSfx" parent="MenuOptions" instance=ExtResource("4_82nwe")]
+
+[connection signal="pressed" from="MenuOptions/Start" to="MenuOptions" method="_on_start_pressed"]
+[connection signal="pressed" from="MenuOptions/Settings" to="MenuOptions" method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuOptions/Quit" to="MenuOptions" method="_on_quit_pressed"]
