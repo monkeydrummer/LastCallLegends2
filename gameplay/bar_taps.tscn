@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctl568bi2u7ro"]
+
+[ext_resource type="Script" uid="uid://bvre3vc133byp" path="res://gameplay/bar_taps.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://gameplay/tap_slot.tscn" id="2_tap"]
+[ext_resource type="Resource" path="res://data/default_beer_palette.tres" id="3_palette"]
+
+[node name="BarTaps" type="Node2D"]
+z_index = 5
+script = ExtResource("1_script")
+beer_palette = ExtResource("3_palette")
+
+[node name="TapSlot1" parent="." instance=ExtResource("2_tap")]
+position = Vector2(423.00003, 708)
+scale = Vector2(1.5, 1.5)
+
+[node name="TapSlot2" parent="." instance=ExtResource("2_tap")]
+position = Vector2(532, 708)
+scale = Vector2(1.5, 1.5)
+tap_index = 2
+
+[node name="TapSlot3" parent="." instance=ExtResource("2_tap")]
+position = Vector2(639, 709)
+scale = Vector2(1.5, 1.5)
+tap_index = 3
+
+[node name="TapSlot4" parent="." instance=ExtResource("2_tap")]
+position = Vector2(748, 708)
+scale = Vector2(1.5, 1.5)
+tap_index = 4
+
+[node name="TapSlot5" parent="." instance=ExtResource("2_tap")]
+position = Vector2(857, 707)
+scale = Vector2(1.5, 1.5)
+tap_index = 5

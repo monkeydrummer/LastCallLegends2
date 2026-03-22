@@ -1,59 +1,107 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdnyglk1i1cxl"]
+[gd_scene load_steps=7 format=3 uid="uid://bdnyglk1i1cxl"]
 
-[ext_resource type="Script" path="res://gameplay/gameplay.gd" id="1_thqv1"]
-[ext_resource type="Texture2D" uid="uid://bgprycbqd2tbx" path="res://assets/icon.svg" id="2_o7ako"]
-[ext_resource type="PackedScene" uid="uid://cko02oljhiby" path="res://paused/paused.tscn" id="3_w8wrl"]
-[ext_resource type="PackedScene" uid="uid://cee5dna3u27jf" path="res://assets/select_sfx.tscn" id="4_7kf0b"]
+[ext_resource type="Script" uid="uid://bnm22fkknclk2" path="res://gameplay/gameplay.gd" id="1_gameplay"]
+[ext_resource type="Texture2D" uid="uid://cr5kc8tp0u61w" path="res://assets/bar/bar_background_default.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://ct6wuecpbwkwn" path="res://assets/bar/bar-5handles.png" id="3_bar"]
+[ext_resource type="PackedScene" uid="uid://ctl568bi2u7ro" path="res://gameplay/bar_taps.tscn" id="4_bar_taps"]
+[ext_resource type="Script" uid="uid://bfqrnwdbnovdl" path="res://gameplay/customer_queue.gd" id="5_queue"]
+[ext_resource type="PackedScene" uid="uid://c8level_complete_ov" path="res://gameplay/level_complete_overlay.tscn" id="7_level_complete"]
 
-[node name="Gameplay" type="Node2D"]
-script = ExtResource("1_thqv1")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(655, 453)
-texture = ExtResource("2_o7ako")
-
-[node name="Stack" type="VFlowContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 478.0
-offset_top = 115.0
-offset_right = 815.0
-offset_bottom = 722.0
+[node name="Gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-size_flags_horizontal = 4
-metadata/_edit_group_ = true
+grow_vertical = 2
+script = ExtResource("1_gameplay")
 
-[node name="Title" type="Label" parent="Stack"]
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="CustomerQueue" type="Node2D" parent="World"]
+z_index = 1
+position = Vector2(2, 365)
+script = ExtResource("5_queue")
+
+[node name="BarLayer" type="CanvasLayer" parent="."]
+layer = 8
+
+[node name="BarForeground" type="TextureRect" parent="BarLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -374.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.8, 1.8)
+pivot_offset = Vector2(640, 400)
+mouse_filter = 2
+texture = ExtResource("3_bar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TapsLayer" type="CanvasLayer" parent="."]
+layer = 9
+
+[node name="BarTaps" parent="TapsLayer" instance=ExtResource("4_bar_taps")]
+
+[node name="LevelCompleteLayer" type="CanvasLayer" parent="."]
+layer = 110
+process_mode = 3
+
+[node name="LevelComplete" parent="LevelCompleteLayer" instance=ExtResource("7_level_complete")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Root" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Root"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"HeaderLarge"
-text = "GAMEPLAY"
+size_flags_horizontal = 0
 
-[node name="Instructions" type="Label" parent="Stack"]
+[node name="ScoreLabel" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "Get started with Godot Skeleton by replacing this Gameplay scene with your own."
-horizontal_alignment = 1
-autowrap_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Score: 0"
 
-[node name="PauseInstructions" type="Label" parent="Stack"]
+[node name="ServesProgress" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-text = "Press START, P, or ESC to open pause menu."
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+text = "Serves: 0 / 15"
 
-[node name="LinkButton" type="LinkButton" parent="Stack"]
+[node name="OrderHint" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "View Template Source"
-uri = "https://github.com/brettchalupa/godot_skeleton"
+theme_override_font_sizes/font_size = 20
+text = "Order: —"
 
-[node name="Paused" parent="." instance=ExtResource("3_w8wrl")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="SelectSfx" parent="." instance=ExtResource("4_7kf0b")]
+[node name="LastRating" type="Label" parent="HUD/Root/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Last: —"

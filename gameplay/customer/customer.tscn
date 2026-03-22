@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7bar_customer"]
+
+[ext_resource type="Script" path="res://gameplay/customer/customer.gd" id="1_script"]
+
+[node name="Customer" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Portrait" type="Sprite2D" parent="."]
+z_index = 0
+
+[node name="OrderBubble" type="PanelContainer" parent="."]
+z_index = 1
+offset_left = -40.0
+offset_top = -332.0
+offset_right = 48.0
+offset_bottom = -300.0
+
+[node name="Label" type="Label" parent="OrderBubble"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Beer 1"
+horizontal_alignment = 1
+
+[node name="WaitBar" type="ProgressBar" parent="."]
+z_index = 2
+offset_left = -44.0
+offset_top = -354.0
+offset_right = 44.0
+offset_bottom = -334.0
+theme_override_font_sizes/font_size = 11
+max_value = 100.0
+value = 100.0
+show_percentage = false
