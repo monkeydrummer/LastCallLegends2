@@ -22,7 +22,7 @@ func show_results(level_display_name: String, total_score: int, serve_count: int
 	if serve_count > 0:
 		avg = float(sum_serve_points) / float(serve_count)
 	_average.text = "Average per serve: %.1f pts" % avg
-	_serves.text = "Serves completed: %d" % serve_count
+	_serves.text = "Guests served: %d" % serve_count
 	show()
 	get_viewport().gui_release_focus()
 

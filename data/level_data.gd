@@ -15,8 +15,8 @@ extends Resource
 ## Seconds before a customer leaves (front of queue).
 @export var wait_time_seconds: float = 28.0
 
-## Successful serves required to finish the level.
-@export var customers_to_serve: int = 15
+## Level ends when this many seconds have elapsed.
+@export var level_duration_seconds: float = 45.0
 
 ## Reserved for themed customer pools later.
 @export var customer_theme_tag: String = ""

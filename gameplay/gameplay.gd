@@ -4,13 +4,14 @@ extends Control
 @onready var _queue: CustomerQueue = $World/CustomerQueue
 @onready var _bar_taps: BarTaps = $TapsLayer/BarTaps
 @onready var _score_label: Label = $HUD/Root/VBox/ScoreLabel
-@onready var _serves_label: Label = $HUD/Root/VBox/ServesProgress
+@onready var _time_label: Label = $HUD/Root/VBox/TimeLabel
+@onready var _guests_label: Label = $HUD/Root/VBox/GuestsServed
 @onready var _order_label: Label = $HUD/Root/VBox/OrderHint
 @onready var _last_rating: Label = $HUD/Root/VBox/LastRating
 @onready var _level_complete_overlay: LevelCompleteOverlay = $LevelCompleteLayer/LevelComplete
 
 var _score: int = 0
-var _target_serves: int = 15
+var _time_remaining: float = 45.0
 var _serves_completed: int = 0
 var _sum_serve_points: int = 0
 var _level_complete: bool = false
@@ -34,7 +35,7 @@ func _ready() -> void:
 	var ld: LevelData = Session.get_level_data()
 	if ld != null:
 		_queue.configure(ld.wait_time_seconds)
-		_target_serves = maxi(1, ld.customers_to_serve)
+		_time_remaining = maxf(1.0, ld.level_duration_seconds)
 	_bar_taps.apply_palette()
 	for slot in _bar_taps.get_slots():
 		slot.pour_released.connect(_on_pour_released)
@@ -42,6 +43,17 @@ func _ready() -> void:
 	_queue.queue_changed.connect(_on_queue_changed)
 	_queue.customer_served.connect(_on_customer_served)
 	_on_queue_changed()
+
+
+func _process(delta: float) -> void:
+	if _level_complete:
+		return
+	_time_remaining -= delta
+	if _time_remaining <= 0.0:
+		_time_remaining = 0.0
+		_finish_level()
+		return
+	_update_hud()
 
 
 func _on_pour_released(tap_index: int, fill_ratio: float) -> void:
@@ -137,8 +149,6 @@ func _on_customer_served(_rating: String, points_awarded: int) -> void:
 	_serves_completed += 1
 	_sum_serve_points += points_awarded
 	_update_hud()
-	if _serves_completed >= _target_serves:
-		_finish_level()
 
 
 func _finish_level() -> void:
@@ -154,9 +164,19 @@ func _finish_level() -> void:
 	get_tree().paused = true
 
 
+func _format_time_mm_ss(t: float) -> String:
+	var s: int = 0
+	if t > 0.0:
+		s = int(ceil(t))
+	var m: int = s / 60
+	var r: int = s % 60
+	return "%d:%02d" % [m, r]
+
+
 func _update_hud() -> void:
 	_score_label.text = "Score: %d" % _score
-	_serves_label.text = "Serves: %d / %d" % [_serves_completed, _target_serves]
+	_time_label.text = "Time: %s" % _format_time_mm_ss(_time_remaining)
+	_guests_label.text = "Guests served: %d" % _serves_completed
 
 
 func _input(event: InputEvent) -> void:

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8tap_slot_bar01"]
+[gd_scene load_steps=2 format=3 uid="uid://wmts7vwm4w3f"]
 
-[ext_resource type="Script" path="res://gameplay/tap_slot.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://csmelctl6ueqm" path="res://gameplay/tap_slot.gd" id="1_script"]
 
 [node name="TapSlot" type="Node2D"]
 script = ExtResource("1_script")
@@ -8,55 +8,45 @@ script = ExtResource("1_script")
 [node name="PourStreamClip" type="Control" parent="."]
 z_index = 6
 clip_contents = true
+layout_mode = 3
+anchors_preset = 0
 offset_left = -4.0
-offset_top = -96.0
+offset_top = -108.0
 offset_right = 4.0
 offset_bottom = 4.0
 
 [node name="PourStreamFill" type="ColorRect" parent="PourStreamClip"]
 layout_mode = 0
 offset_right = 8.0
-offset_bottom = 100.0
+offset_bottom = 109.0
 color = Color(0.85, 0.65, 0.25, 0.82)
 
 [node name="Glass" type="Control" parent="."]
 z_index = 4
 clip_contents = true
 custom_minimum_size = Vector2(44, 108)
-layout_mode = 0
+layout_mode = 3
 anchors_preset = 0
 offset_left = -22.0
 offset_top = -100.0
 offset_right = 22.0
 offset_bottom = 8.0
 
-[node name="Outline" type="ColorRect" parent="Glass"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GlassBack" type="Polygon2D" parent="Glass"]
 color = Color(0.85, 0.9, 0.95, 0.35)
+polygon = PackedVector2Array(0, 0, 44, 0, 40, 104, 4, 104)
 
-[node name="Liquid" type="ColorRect" parent="Glass"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 100.0
-offset_right = 40.0
-offset_bottom = 104.0
+[node name="Liquid" type="Polygon2D" parent="Glass"]
 color = Color(0.75, 0.55, 0.2, 0.92)
+polygon = PackedVector2Array(4, 104, 40, 104, 40, 104, 4, 104)
 
-[node name="FoamHead" type="ColorRect" parent="Glass"]
+[node name="FoamHead" type="Polygon2D" parent="Glass"]
 z_index = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 96.0
-offset_right = 40.0
-offset_bottom = 100.0
 color = Color(0.95, 0.96, 0.98, 0.92)
+polygon = PackedVector2Array(4, 100, 40, 100, 40, 100, 4, 100)
 
 [node name="RatingLabel" type="Label" parent="."]
+visible = false
 z_index = 8
 offset_left = 28.0
 offset_top = -100.0
@@ -65,7 +55,4 @@ offset_bottom = -68.0
 theme_override_colors/font_outline_color = Color(0.08, 0.06, 0.05, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
-text = ""
-horizontal_alignment = 0
 vertical_alignment = 1
-visible = false

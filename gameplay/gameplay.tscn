@@ -91,10 +91,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Score: 0"
 
-[node name="ServesProgress" type="Label" parent="HUD/Root/VBox"]
+[node name="TimeLabel" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Serves: 0 / 15"
+text = "Time: 0:45"
+
+[node name="GuestsServed" type="Label" parent="HUD/Root/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Guests served: 0"
 
 [node name="OrderHint" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2

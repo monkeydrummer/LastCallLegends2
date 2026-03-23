@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Godot Skeleton"
+config/name="Last Call Legends"
 config/description="[Add your description here!]"
 run/main_scene="res://main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
