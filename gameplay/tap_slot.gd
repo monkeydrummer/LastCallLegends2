@@ -38,7 +38,7 @@ signal pour_released(tap_index: int, fill_ratio: float)
 ## Added to foam floor when glass has more fill (0..1).
 @export var foam_fill_bonus: float = 2.0
 @export var foam_build_rate: float = 28.0
-@export var foam_decay_rate: float = 22.0
+@export var foam_decay_rate: float = 12.0
 
 var _fill: float = 0.0
 ## 1 while pouring; decays after release so the stream tapers off without draining the glass.
