@@ -2,17 +2,13 @@ extends Node2D
 class_name BarCustomer
 
 const PORTRAIT_TEXTURES: Array[Texture2D] = [
-	preload("res://assets/customers/customer_portrait1_300.png"),
-	preload("res://assets/customers/customer_portrait2_300.png"),
-	preload("res://assets/customers/customer_portrait3_300.png"),
-	preload("res://assets/customers/customer_portrait4_300.png"),
-	preload("res://assets/customers/customer_portrait5_300.png"),
-	preload("res://assets/customers/customer_portrait6_300.png"),
-	preload("res://assets/customers/customer_portrait7_300.png"),
-	preload("res://assets/customers/customer_portrait8_300.png"),
+	preload("res://assets/customers/customer_portrait1.png"),
+	preload("res://assets/customers/customer_portrait2.png"),
+	preload("res://assets/customers/customer_portrait3.png"),	
+	preload("res://assets/customers/customer_portrait4.png"),	
+	preload("res://assets/customers/customer_portrait5.png"),	
+	preload("res://assets/customers/customer_portrait6.png"),	
 ]
-
-const PORTRAIT_WIDTH_PX: float = 300.0
 
 var order_beer_index: int = 1
 var bar_slot_index: int = -1
@@ -37,10 +33,8 @@ func get_portrait_texture() -> Texture2D:
 
 func set_portrait_texture(tex: Texture2D) -> void:
 	_portrait.texture = tex
-	var tw: float = float(_portrait.texture.get_width())
-	var s: float = PORTRAIT_WIDTH_PX / tw
-	_portrait.scale = Vector2(s, s)
-	var half_h: float = float(_portrait.texture.get_height()) * s * 0.5
+	_portrait.scale = Vector2.ONE
+	var half_h: float = float(_portrait.texture.get_height()) * 0.5
 	_portrait.position = Vector2(0.0, -half_h)
 
 

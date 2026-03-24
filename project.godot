@@ -24,9 +24,10 @@ Session="*res://session.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=320
+window/size/viewport_height=240
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 window/name="Last Call Legends"
 
 [dotnet]
@@ -117,4 +118,6 @@ tap_5={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnm22fkknclk2" path="res://gameplay/gameplay.gd" id="1_gameplay"]
 [ext_resource type="Texture2D" uid="uid://cr5kc8tp0u61w" path="res://assets/bar/bar_background_default.png" id="2_bg"]
-[ext_resource type="Texture2D" uid="uid://bahyvtyddcprg" path="res://assets/bar/bar-5handles.png" id="3_bar"]
+[ext_resource type="Texture2D" uid="uid://ct6wuecpbwkwn" path="res://assets/bar/bar-5handles.png" id="3_bar"]
 [ext_resource type="PackedScene" uid="uid://ctl568bi2u7ro" path="res://gameplay/bar_taps.tscn" id="4_bar_taps"]
 [ext_resource type="Script" uid="uid://bfqrnwdbnovdl" path="res://gameplay/customer_queue.gd" id="5_queue"]
 [ext_resource type="PackedScene" path="res://gameplay/level_complete_overlay.tscn" id="7_level_complete"]
@@ -32,11 +32,10 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="World" type="Node2D" parent="."]
-position = Vector2(0, -8)
 
 [node name="CustomerQueue" type="Node2D" parent="World"]
 z_index = 1
-position = Vector2(0.5, 139.66699)
+position = Vector2(1, 243.333)
 script = ExtResource("5_queue")
 
 [node name="BarLayer" type="CanvasLayer" parent="."]
@@ -47,10 +46,12 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -240.0
+offset_top = -267.333
+offset_bottom = -0.6669922
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(160, 133.333)
+scale = Vector2(1.35, 1.35)
+pivot_offset = Vector2(320, 266.667)
 mouse_filter = 2
 texture = ExtResource("3_bar")
 expand_mode = 1
@@ -60,7 +61,7 @@ stretch_mode = 5
 layer = 9
 
 [node name="BarTaps" parent="TapsLayer" instance=ExtResource("4_bar_taps")]
-position = Vector2(-1, -2.2175002)
+position = Vector2(0, -10.435)
 
 [node name="LevelCompleteLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -77,10 +78,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 11
 
 [node name="VBox" type="VBoxContainer" parent="HUD/Root"]
 layout_mode = 2
@@ -88,25 +89,25 @@ size_flags_horizontal = 0
 
 [node name="ScoreLabel" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 15
 text = "Score: 0"
 
 [node name="TimeLabel" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 13
 text = "Time: 0:45"
 
 [node name="GuestsServed" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 13
 text = "Guests served: 0"
 
 [node name="OrderHint" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 13
 text = "Order: —"
 
 [node name="LastRating" type="Label" parent="HUD/Root/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 12
 text = "Last: —"

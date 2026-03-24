@@ -21,13 +21,13 @@ var _serve_spawn_countdown: float = 0.0
 var _spawn_enabled: bool = true
 
 ## One position per bar stand; each customer picks a random free slot so sprites do not overlap.
-## Spaced for ~300px-wide portraits across a 1280-wide viewport; Y is local to CustomerQueue.
+## Spaced for bar stands across a 320-wide viewport; Y is local to CustomerQueue.
 @export var customer_slot_positions: Array[Vector2] = [
-	Vector2(148, 130),
-	Vector2(393, 130),
-	Vector2(638, 130),
-	Vector2(883, 130),
-	Vector2(1128, 130),
+	Vector2(37, 43.333),
+	Vector2(98.25, 43.333),
+	Vector2(159.5, 43.333),
+	Vector2(220.75, 43.333),
+	Vector2(282, 43.333),
 ]
 
 
@@ -107,7 +107,7 @@ func _bar_slot_count() -> int:
 
 func _position_for_bar_slot(slot: int) -> Vector2:
 	if customer_slot_positions.is_empty():
-		return Vector2(640, 130)
+		return Vector2(160, 43.333)
 	var last: int = customer_slot_positions.size() - 1
 	var i: int = clampi(slot, 0, last)
 	return customer_slot_positions[i]

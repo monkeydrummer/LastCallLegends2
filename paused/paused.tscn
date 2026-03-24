@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cko02oljhiby"]
 
-[ext_resource type="Script" path="res://paused/paused.gd" id="1_n0tpy"]
-[ext_resource type="Script" path="res://paused/options.gd" id="2_iq4em"]
+[ext_resource type="Script" uid="uid://dsf2pitkm5uw6" path="res://paused/paused.gd" id="1_n0tpy"]
+[ext_resource type="Script" uid="uid://bw20f818r80c3" path="res://paused/options.gd" id="2_iq4em"]
 
 [node name="PauseOverlay" type="CanvasLayer"]
-layer = 100
 process_mode = 2
+layer = 100
 
 [node name="Paused" type="Control" parent="."]
 layout_mode = 3
@@ -27,28 +27,28 @@ color = Color(0.156863, 0.396078, 0.384314, 1)
 
 [node name="Title" type="Label" parent="Paused"]
 layout_mode = 0
-offset_left = 589.0
-offset_top = 136.0
-offset_right = 687.0
-offset_bottom = 178.0
+offset_left = 111.0
+offset_top = 19.0
+offset_right = 209.0
+offset_bottom = 58.0
 theme_type_variation = &"HeaderLarge"
 text = "Paused"
 
 [node name="Instructions" type="Label" parent="Paused"]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 239.0
-offset_right = 770.0
-offset_bottom = 273.0
+offset_left = 33.0
+offset_top = 63.334
+offset_right = 290.0
+offset_bottom = 86.334
 text = "Press START, P, or ESC to resume."
 horizontal_alignment = 1
 
 [node name="PauseOptions" type="VFlowContainer" parent="Paused" node_paths=PackedStringArray("shortcut_context")]
 layout_mode = 0
-offset_left = 548.0
-offset_top = 170.0
-offset_right = 721.0
-offset_bottom = 714.0
+offset_left = 77.0
+offset_top = 56.0
+offset_right = 250.0
+offset_bottom = 237.33301
 shortcut_context = NodePath("Resume")
 alignment = 1
 script = ExtResource("2_iq4em")

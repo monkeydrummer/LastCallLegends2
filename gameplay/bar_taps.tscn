@@ -10,25 +10,25 @@ script = ExtResource("1_script")
 beer_palette = ExtResource("3_palette")
 
 [node name="TapSlot1" parent="." instance=ExtResource("2_tap")]
-position = Vector2(423.00003, 708)
-scale = Vector2(1.5, 1.5)
+position = Vector2(105.75, 236)
+scale = Vector2(0.375, 0.375)
 
 [node name="TapSlot2" parent="." instance=ExtResource("2_tap")]
-position = Vector2(531, 708)
-scale = Vector2(1.5, 1.5)
+position = Vector2(132.75, 236.00002)
+scale = Vector2(0.375, 0.375)
 tap_index = 2
 
 [node name="TapSlot3" parent="." instance=ExtResource("2_tap")]
-position = Vector2(639, 709)
-scale = Vector2(1.5, 1.5)
+position = Vector2(160.75, 236.333)
+scale = Vector2(0.375, 0.375)
 tap_index = 3
 
 [node name="TapSlot4" parent="." instance=ExtResource("2_tap")]
-position = Vector2(748, 708)
-scale = Vector2(1.5, 1.5)
+position = Vector2(189, 236.00002)
+scale = Vector2(0.375, 0.375)
 tap_index = 4
 
 [node name="TapSlot5" parent="." instance=ExtResource("2_tap")]
-position = Vector2(857, 707)
-scale = Vector2(1.5, 1.5)
+position = Vector2(216.25, 236.167)
+scale = Vector2(0.375, 0.375)
 tap_index = 5

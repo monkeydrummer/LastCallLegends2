@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y2m0a0hc3k6"
-path="res://.godot/imported/customer_portrait3_300.png-43eb0aaa178549576e2f7469751ca866.ctex"
+uid="uid://cybqpsfyng0u2"
+path="res://.godot/imported/customer_portrait6.png-c596d312bc6801d74c44a6b69a8c6a97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/customers/customer_portrait3_300.png"
-dest_files=["res://.godot/imported/customer_portrait3_300.png-43eb0aaa178549576e2f7469751ca866.ctex"]
+source_file="res://assets/customers/customer_portrait6.png"
+dest_files=["res://.godot/imported/customer_portrait6.png-c596d312bc6801d74c44a6b69a8c6a97.ctex"]
 
 [params]
 
